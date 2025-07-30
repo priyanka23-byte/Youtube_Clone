@@ -1,0 +1,136 @@
+.navbar {
+  height: 56px;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between; /* left, middle, right spaced */
+  position: fixed;
+  top: 0;
+  background-color: black;
+  z-index: 10;
+}
+
+/* Left section: hamburger + logo */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* space between hamburger and youtube logo */
+}
+
+/* Hamburger */
+.navbar-hamburger {
+  width: 40px;     
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu-icon {
+  color: white;
+  font-size: 35px;
+}
+
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.yt-icon {
+  color: red;
+  font-size: 35px;
+}
+
+.navbar-youtubetext {
+  font-size: 22px;
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/*------------------------ Middle section--------------------*/
+.navbar-middle {
+  flex: 1;                    /* expand to fill available space */
+  display: flex;
+  justify-content: center;   
+  align-items: center;
+  max-width: 700px;          
+  gap: 8px;
+}
+
+
+.search-input {
+  flex: 1;
+  max-width: 600px;
+  min-width: 200px;
+  height: 36px;
+  border: 1px solid #303030;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  padding: 0 12px;
+  outline: none;
+}
+
+.search-input:focus {
+  border: 1px solid #1c62b9;
+}
+
+/*-------------------------------------- Search and mic btns-------------------------------------- */
+.search-btn, .mic-btn {
+  height: 36px;
+  width: 36px;
+  background-color: #222;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search-btn {
+  border: 1px solid #303030;
+}
+
+.search-btn:hover, .mic-btn:hover {
+  background-color: #383838;
+}
+
+.search-icon, .mic-icon {
+  font-size: 20px;
+  color: white;
+}
+
+/* Right section  */
+
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-left: 8px;
+}
+
+.video-icon {
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+}
+ .bell-icon, .user-icon {
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+}
+
+.video-icon:hover,
+.bell-icon:hover,
+.user-icon:hover {
+  color: #c0c0c0;
+}
