@@ -1,12 +1,24 @@
 
 import Navbar from './Component/Navbar/Navbar';
+import Home from './Pages/Home/Home';
 import './App.css';
+import { useState } from 'react';
 
 function App (){
+
+const [sidebar, setSidebar]= useState(true);
+
+const sideNavbar=(value)=>{
+  setSidebar(value)
+}
+
+
   return(
   <div className='App'>
-  <h1> Welcome to Youtube Clone</h1>
-  <Navbar />
+  
+  <Navbar  sideNavbar={sideNavbar}  sidebar={sidebar}/>
+  <Home  sidebar={sidebar}/>
+
   </div>
   )
 }

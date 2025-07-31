@@ -1,25 +1,28 @@
 .navbar {
+  
   height: 56px;
   box-sizing: border-box;
-  padding: 10px 16px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: space-between; /* left, middle, right spaced */
+  justify-content: space-between;
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   background-color: black;
   z-index: 10;
 }
 
-/* Left section: hamburger + logo */
+/*------------------------------------ Left section------------------------------------- */
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 12px; /* space between hamburger and youtube logo */
+  gap: 12px; 
 }
 
-/* Hamburger */
+
 .navbar-hamburger {
   width: 40px;     
   height: 40px;
@@ -108,7 +111,7 @@
   color: white;
 }
 
-/* Right section  */
+/*----------------------------- Right section-------------------------------------  */
 
 
 .navbar-right {
@@ -123,14 +126,39 @@
   color: white;
   cursor: pointer;
 }
- .bell-icon, .user-icon {
+ .bell-icon {
   font-size: 22px;
   color: white;
   cursor: pointer;
 }
 
 .video-icon:hover,
-.bell-icon:hover,
-.user-icon:hover {
+.bell-icon:hover
+ {
   color: #c0c0c0;
 }
+
+.user-icon{
+   width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+}
+.navbar-modal{
+  position: absolute;
+  top: 55px;
+  width: 100%;
+  z-index: 20;
+  color: white;
+}
+.navbar-modal-option{
+  background-color: rgb(85,85,85);
+  padding: 7px;
+  cursor: pointer;
+  &:hover{
+    background-color: rgb(34,33,33);
+  }
+}
+
+ 
