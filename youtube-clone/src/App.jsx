@@ -3,6 +3,8 @@ import Navbar from './Component/Navbar/Navbar';
 import Home from './Pages/Home/Home';
 import './App.css';
 import { useState } from 'react';
+import Video from './Pages/Video/Video';
+import {Route, Routes} from'react-router-dom';  
 
 function App (){
 
@@ -17,7 +19,11 @@ const sideNavbar=(value)=>{
   <div className='App'>
   
   <Navbar  sideNavbar={sideNavbar}  sidebar={sidebar}/>
-  <Home  sidebar={sidebar}/>
+  <Routes>
+    <Route path='/' element={ <Home  sidebar={sidebar}/>} />
+    <Route path='/watch/:id' element={<Video />}/>
+  </Routes>
+ 
 
   </div>
   )
