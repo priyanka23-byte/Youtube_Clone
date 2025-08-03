@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from "../../Component/Sidebar/Sidebar";
-import Homepage from '../../Component/Homepage/Homepage';
+import Sidebar from "../../Component/Sidebar/Sidebar.jsx";
+import Homepage from '../../Component/Homepage/Homepage.jsx';
 import './Home.css';
 
 

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Homepage.css";
+import {Link} from'react-router-dom'
 
 const Homepage = ({ sidebar }) => {
   const options = [
@@ -41,7 +42,7 @@ const Homepage = ({ sidebar }) => {
       <div className={sidebar ? "home_mainpage":"mainpageWithoutSidebar"}>
 
 
-        <div className="youtube_videos">
+        <Link to={'/watch/8949'} className="youtube_videos">
           <div className="youtube_thumbnail">
             <img
               src="https://dummyimage.com/1280x720/cccccc/000000&text=Thumbnail"
@@ -65,8 +66,9 @@ const Homepage = ({ sidebar }) => {
               <p className="videoStats">200K views • 2 days ago</p>
             </div>
           </div>
-        </div>
-        <div className="youtube_videos">
+        </Link>
+
+        <Link to={'/watch/8949'} className="youtube_videos">
           <div className="youtube_thumbnail">
             <img
               src="https://dummyimage.com/1280x720/cccccc/000000&text=Thumbnail"
@@ -90,9 +92,9 @@ const Homepage = ({ sidebar }) => {
               <p className="videoStats">200K views • 2 days ago</p>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="youtube_videos">
+        <Link to={'/watch/8949'} className="youtube_videos">
           <div className="youtube_thumbnail">
             <img
               src="https://dummyimage.com/1280x720/cccccc/000000&text=Thumbnail"
@@ -116,9 +118,9 @@ const Homepage = ({ sidebar }) => {
               <p className="videoStats">200K views • 2 days ago</p>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="youtube_videos">
+        <Link to={'/watch/8949'} className="youtube_videos">
           <div className="youtube_thumbnail">
             <img
               src="https://dummyimage.com/1280x720/cccccc/000000&text=Thumbnail"
@@ -142,9 +144,9 @@ const Homepage = ({ sidebar }) => {
               <p className="videoStats">200K views • 2 days ago</p>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="youtube_videos">
+        <Link to={'/watch/8949'} className="youtube_videos">
           <div className="youtube_thumbnail">
             <img
               src="https://dummyimage.com/1280x720/cccccc/000000&text=Thumbnail"
@@ -168,9 +170,9 @@ const Homepage = ({ sidebar }) => {
               <p className="videoStats">200K views • 2 days ago</p>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="youtube_videos">
+        <Link to={'/watch/8949'} className="youtube_videos">
           <div className="youtube_thumbnail">
             <img
               src="https://dummyimage.com/1280x720/cccccc/000000&text=Thumbnail"
@@ -194,8 +196,8 @@ const Homepage = ({ sidebar }) => {
               <p className="videoStats">200K views • 2 days ago</p>
             </div>
           </div>
-        </div>
-
+        </Link>
+       
       
 
       </div>

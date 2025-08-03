@@ -6,6 +6,7 @@ import { IoMdSearch } from "react-icons/io";
 import { FaMicrophone } from "react-icons/fa";
 import { MdOutlineVideoCall } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
+import {Link , useNavigate} from 'react-router-dom'
 
 const Navbar = ({sideNavbar, sidebar}) => {
   const [userPic, setUserPic] = useState(
@@ -13,6 +14,7 @@ const Navbar = ({sideNavbar, sidebar}) => {
   );
 
   const[navbarModal,setNavbarModal] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickModal=()=>{
     setNavbarModal(prev=>!prev);
@@ -21,7 +23,10 @@ const Navbar = ({sideNavbar, sidebar}) => {
     sideNavbar(!sidebar)
   }
 
-
+ const handleprofile=()=>{
+  navigate('/user/7869');
+  setNavbarModal(false);
+ }
 
 
   return (
@@ -31,10 +36,10 @@ const Navbar = ({sideNavbar, sidebar}) => {
         <div className="navbar-hamburger" onClick={sideNavbarfunc}>
           <IoMenu className="menu-icon" />
         </div>
-        <div className="navbar-logo">
+        <Link to ={'/'} className="navbar-logo">
           <FaYoutube className="yt-icon" />
           <span className="navbar-youtubetext">YouTube</span>
-        </div>
+        </Link>
       </div>
       {/*-----------------------------middle section-------------------*/}
       <div className="navbar-middle">
@@ -55,7 +60,7 @@ const Navbar = ({sideNavbar, sidebar}) => {
 
        { navbarModal && 
         <div className="navbar-modal">
-          <div className="navbar-modal-option">Profile</div>
+          <div className="navbar-modal-option" onClick={handleprofile}>Profile</div>
            <div className="navbar-modal-option">Login</div>
             <div className="navbar-modal-option">Logout</div>
 

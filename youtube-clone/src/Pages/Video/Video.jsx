@@ -2,6 +2,7 @@ import React from 'react'
 import './Video.css'
 import { MdOutlineThumbUp } from "react-icons/md";
 import { MdOutlineThumbDown } from "react-icons/md";
+import {Link} from 'react-router-dom';
 
 const Video = () => {
   return (
@@ -19,11 +20,11 @@ const Video = () => {
           <div className="videoTitle">{"Javascript for beginners"}</div>
           <div className="profileBlock">
             <div className="profileBlock-left">
-              <div className="profileBlock-imgLeft">
-                <img className="profileBlock-Image"src="https://scand.com/wp-content/uploads/2021/04/JavaScript.jpg" alt="" />
-              </div>
+              <Link to={'/user/7869'} className="profileBlock-imgLeft">
+                <img className="profileBlock-Image"src="https://www.logoai.com/uploads/resources/2023/06/19/c744293dbda881eef75f15e8692b52d2.jpeg" alt="" />
+              </Link>
               <div className="videoAbout">
-                <div className="videoUser">{"Piaa"}</div>
+                <div className="videoUser">{"CodingWorld"}</div>
                 <div className="videoDate">{"2025-07-28"}</div>
 
               </div>
