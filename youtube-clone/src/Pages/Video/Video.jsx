@@ -1,10 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './Video.css'
 import { MdOutlineThumbUp } from "react-icons/md";
 import { MdOutlineThumbDown } from "react-icons/md";
 import {Link} from 'react-router-dom';
 
 const Video = () => {
+
+const [message, setMessage]=useState("");
+console.log(message);
+
   return (
     <div className='video'>
       <div className="videoPost">
@@ -59,7 +63,9 @@ const Video = () => {
        <div className="selfcomment">
         <img className="selfcommentProfile" src="https://www.profilepicture.ai/styles/paranoia_agent.webp" alt="" />
        <div className="addComment">
-        <input type="text" className='Comment-input' placeholder='Add a comment'/>
+
+        <input type="text" className='Comment-input' value={message} onChange={(e)=>{setMessage(e.target.value)}} placeholder='Add a comment'/>
+
         <div className='submitbtn'>
           <div className="cancelcomment">Cancel</div>
           <div className="cancelcomment">Comment</div>

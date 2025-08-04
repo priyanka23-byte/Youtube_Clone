@@ -11,7 +11,8 @@ const Profile = ({sidebar}) => {
     <div className='profile'>
         <Sidebar sidebar={sidebar}/>
       
-      <div className="profile-page">
+      <div className={sidebar?"profile-page":"profile-page-inactive"}>
+
         <div className="profile-Top">
             <div className="profileTop-section">
                 <img src="https://www.logoai.com/uploads/resources/2023/06/19/c744293dbda881eef75f15e8692b52d2.jpeg" alt="" className='profileTop-img' />

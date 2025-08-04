@@ -21,6 +21,16 @@
     align-items: center;
 
 }
+.profile-page-inactive{
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    flex: 1;
+    color: white;
+    margin-top: 56px;
+    justify-content: center;
+    align-items: center;
+}
 .profile-Top{
     width: 100%;
     display: flex;

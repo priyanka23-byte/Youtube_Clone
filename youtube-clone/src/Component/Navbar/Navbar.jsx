@@ -7,6 +7,7 @@ import { FaMicrophone } from "react-icons/fa";
 import { MdOutlineVideoCall } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
 import {Link , useNavigate} from 'react-router-dom'
+import LogIn from "../LogIn/LogIn";
 
 const Navbar = ({sideNavbar, sidebar}) => {
   const [userPic, setUserPic] = useState(
@@ -14,6 +15,10 @@ const Navbar = ({sideNavbar, sidebar}) => {
   );
 
   const[navbarModal,setNavbarModal] = useState(false);
+
+  const[logIn, setLogIn]= useState(false);
+
+
   const navigate = useNavigate();
 
   const handleClickModal=()=>{
@@ -28,6 +33,18 @@ const Navbar = ({sideNavbar, sidebar}) => {
   setNavbarModal(false);
  }
 
+ const setLogInModal =()=>{
+  setLogIn(false);
+ }
+
+ const onclickOfPopUpOption = (button) => {
+  setNavbarModal(false);
+  if (button === "login") {
+    setLogIn(true);
+  } else {
+    
+  }
+};
 
   return (
     <div className="navbar">
@@ -53,21 +70,28 @@ const Navbar = ({sideNavbar, sidebar}) => {
       </div>
       {/*-----------right section ------------------------------------*/}
       <div className="navbar-right">
+        <Link to={'/765/upload'}>
         <MdOutlineVideoCall className="video-icon" />
+        </Link>
         <FaRegBell className="bell-icon" />
+
+        
 
         <img onClick={handleClickModal} src={userPic} alt="icon" className="user-icon" />
 
        { navbarModal && 
         <div className="navbar-modal">
           <div className="navbar-modal-option" onClick={handleprofile}>Profile</div>
-           <div className="navbar-modal-option">Login</div>
-            <div className="navbar-modal-option">Logout</div>
+           <div className="navbar-modal-option" onClick={()=>onclickOfPopUpOption("login")}>Login</div>
+            <div className="navbar-modal-option" onClick={()=>onclickOfPopUpOption("logout")}>Logout</div>
 
         </div>
         }
         
       </div>
+
+        { logIn && <LogIn setLogInModal={setLogInModal} /> }
+
     </div>
   );
 };
