@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./Routes/user.js"; 
 import VideoRoutes from "./Routes/video.js";
+import CommentRoutes from "./Routes/comment.js";
 import cookieParser from 'cookie-parser';
 
 
@@ -26,6 +27,7 @@ mongoose.connect(process.env.MONGO_URI)
 // Middleware
 app.use('/auth', authRoutes);
 app.use('/api',VideoRoutes);
+app.use('/commentApi',CommentRoutes);
 
 
 // Start server

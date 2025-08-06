@@ -28,3 +28,27 @@ export const  getAllVideo = async (req,res) =>{
      }
     
 }
+
+export const getVideoById = async (req, res)=>{
+
+    try{  
+        let {id}= req.params;
+        const video = await Video.findById(id).populate('user','channelName profilePic userName createdAt');
+        res.status(201).json({success:"true","video":video});
+
+
+    }catch(error){
+        res.status(500).json({error: 'Server error'});
+     }
+    
+}
+
+export const getAllVideoByUserID= async(req,res)=>{
+    try{
+     let {userId} = req.params;
+     const video = await Video.find({user:userId}).populate('user','channelName profilePic userName createdAt');;
+     res.status(201).json({success:"true","video":video});
+    }catch(error){
+        res.status(500).json({error: 'Server error'});
+     }
+}
