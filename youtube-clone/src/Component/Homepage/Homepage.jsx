@@ -1,8 +1,23 @@
-import React from "react";
+import React,{useEffect} from "react";
 import "./Homepage.css";
 import {Link} from'react-router-dom'
+import axios from'axios';
+import { useState } from "react";
 
 const Homepage = ({ sidebar }) => {
+
+const [data, setData] = useState([]);
+
+useEffect(()=>{
+  axios.get('http://localhost:4000/api/allvideo').then(res=>{
+    console.log(res.data.videos);
+    setData(res.data.videos);
+  }).catch(err=>{
+    console.log(err);
+  })
+},[])
+
+
   const options = [
     "All",
     "Music",
@@ -40,12 +55,14 @@ const Homepage = ({ sidebar }) => {
       </div>
 
       <div className={sidebar ? "home_mainpage":"mainpageWithoutSidebar"}>
-
-
-        <Link to={'/watch/8949'} className="youtube_videos">
+   
+      {
+        data?.map((item,ind)=>{
+          return(
+               <Link to={`/watch/${item._id}`} className="youtube_videos">
           <div className="youtube_thumbnail">
             <img
-              src="https://dummyimage.com/1280x720/cccccc/000000&text=Thumbnail"
+              src={item.thumbnail}
               alt="thumbnail"
               className="youtube_thumbnailpic"
             />
@@ -55,148 +72,26 @@ const Homepage = ({ sidebar }) => {
           <div className="titlebox">
             <div className="titleProfile">
               <img
-                src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
+                src={item?.user?.profilePic}
                 alt="userpic"
                 className="titleprofilePic"
               />
             </div>
             <div className="videoDetails">
-              <h3 className="videoTitle">Learn React in 20 Minutes</h3>
-              <p className="videoChannel">CodeBiee</p>
-              <p className="videoStats">200K views • 2 days ago</p>
+              <h3 className="videoTitle">{item?.title}</h3>
+              <p className="videoChannel">{item?.user?.channelName}</p>
+              <p className="videoStats">{item?.like} likes</p>
             </div>
           </div>
         </Link>
+          );
+        })
+      }
 
-        <Link to={'/watch/8949'} className="youtube_videos">
-          <div className="youtube_thumbnail">
-            <img
-              src="https://dummyimage.com/1280x720/cccccc/000000&text=Thumbnail"
-              alt="thumbnail"
-              className="youtube_thumbnailpic"
-            />
-            <div className="thumbnail_time">20:00</div>
-          </div>
 
-          <div className="titlebox">
-            <div className="titleProfile">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
-                alt="userpic"
-                className="titleprofilePic"
-              />
-            </div>
-            <div className="videoDetails">
-              <h3 className="videoTitle">Learn React in 20 Minutes</h3>
-              <p className="videoChannel">CodeBiee</p>
-              <p className="videoStats">200K views • 2 days ago</p>
-            </div>
-          </div>
-        </Link>
 
-        <Link to={'/watch/8949'} className="youtube_videos">
-          <div className="youtube_thumbnail">
-            <img
-              src="https://dummyimage.com/1280x720/cccccc/000000&text=Thumbnail"
-              alt="thumbnail"
-              className="youtube_thumbnailpic"
-            />
-            <div className="thumbnail_time">20:00</div>
-          </div>
-
-          <div className="titlebox">
-            <div className="titleProfile">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
-                alt="userpic"
-                className="titleprofilePic"
-              />
-            </div>
-            <div className="videoDetails">
-              <h3 className="videoTitle">Learn React in 20 Minutes</h3>
-              <p className="videoChannel">CodeBiee</p>
-              <p className="videoStats">200K views • 2 days ago</p>
-            </div>
-          </div>
-        </Link>
-
-        <Link to={'/watch/8949'} className="youtube_videos">
-          <div className="youtube_thumbnail">
-            <img
-              src="https://dummyimage.com/1280x720/cccccc/000000&text=Thumbnail"
-              alt="thumbnail"
-              className="youtube_thumbnailpic"
-            />
-            <div className="thumbnail_time">20:00</div>
-          </div>
-
-          <div className="titlebox">
-            <div className="titleProfile">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
-                alt="userpic"
-                className="titleprofilePic"
-              />
-            </div>
-            <div className="videoDetails">
-              <h3 className="videoTitle">Learn React in 20 Minutes</h3>
-              <p className="videoChannel">CodeBiee</p>
-              <p className="videoStats">200K views • 2 days ago</p>
-            </div>
-          </div>
-        </Link>
-
-        <Link to={'/watch/8949'} className="youtube_videos">
-          <div className="youtube_thumbnail">
-            <img
-              src="https://dummyimage.com/1280x720/cccccc/000000&text=Thumbnail"
-              alt="thumbnail"
-              className="youtube_thumbnailpic"
-            />
-            <div className="thumbnail_time">20:00</div>
-          </div>
-
-          <div className="titlebox">
-            <div className="titleProfile">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
-                alt="userpic"
-                className="titleprofilePic"
-              />
-            </div>
-            <div className="videoDetails">
-              <h3 className="videoTitle">Learn React in 20 Minutes</h3>
-              <p className="videoChannel">CodeBiee</p>
-              <p className="videoStats">200K views • 2 days ago</p>
-            </div>
-          </div>
-        </Link>
-
-        <Link to={'/watch/8949'} className="youtube_videos">
-          <div className="youtube_thumbnail">
-            <img
-              src="https://dummyimage.com/1280x720/cccccc/000000&text=Thumbnail"
-              alt="thumbnail"
-              className="youtube_thumbnailpic"
-            />
-            <div className="thumbnail_time">20:00</div>
-          </div>
-
-          <div className="titlebox">
-            <div className="titleProfile">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
-                alt="userpic"
-                className="titleprofilePic"
-              />
-            </div>
-            <div className="videoDetails">
-              <h3 className="videoTitle">Learn React in 20 Minutes</h3>
-              <p className="videoChannel">CodeBiee</p>
-              <p className="videoStats">200K views • 2 days ago</p>
-            </div>
-          </div>
-        </Link>
+        
+ 
        
       
 
