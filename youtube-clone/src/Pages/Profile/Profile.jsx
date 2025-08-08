@@ -1,12 +1,39 @@
 
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
 import './Profile.css'
 import Sidebar from '../../Component/Sidebar/Sidebar.jsx'
 import { FaCaretRight } from "react-icons/fa6";
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import axios from'axios';
+import {useParams} from 'react-router-dom';
 
-
+// Profile  receives 'sidebar' prop to control sidebar visibility
 const Profile = ({sidebar}) => {
+
+  //get the user id fromurl params
+  const {id}= useParams();
+  //state to hold arary of videos
+  const [data, setData] = useState([]);
+  const [user,setUser] = useState(null);
+// fetching data from backend
+  const  fetchProfileData= async ()=>{
+    axios.get(`http://localhost:4000/api/${id}/channel`).then((response)=>{
+      console.log(response);
+      setData(response.data.video);
+      //to set user info from first video object
+      setUser(response.data.video[0],user);
+
+    }).catch(err=>{
+      console.log(err);
+    })
+    
+  }
+
+  useEffect(()=>{
+    fetchProfileData();
+  },[])
+
+
   return (
     <div className='profile'>
         <Sidebar sidebar={sidebar}/>
@@ -15,15 +42,15 @@ const Profile = ({sidebar}) => {
 
         <div className="profile-Top">
             <div className="profileTop-section">
-                <img src="https://www.logoai.com/uploads/resources/2023/06/19/c744293dbda881eef75f15e8692b52d2.jpeg" alt="" className='profileTop-img' />
+                <img className='profileTop-img' src="https://res.cloudinary.com/dg4wgozjr/image/upload/eeeo3sksxtcoeplieuyv.webp" />
             </div>
      
             <div className='profileTop-sectionAbout'>
-                <div className="profileTop-secAbt_name">CodingWorld</div>
-                <div className="profileTop-secAbt_info">@User  . 4 videos</div>
+                <div className="profileTop-secAbt_name">Coding World</div>
+                <div className="profileTop-secAbt_info">@Sam 6.videos</div>
 
                 <div className="profileTop-secAbt_info">
-                 About Section of Channel
+                 I am a software Engineer , working at Google
             </div>
 
             </div>
@@ -36,47 +63,25 @@ const Profile = ({sidebar}) => {
          <div className="profileTitle">Videos &nbsp;<FaCaretRight /></div>
 
          <div className="profile_video">
-
-            <Link to ={'/watch/7869'} className="video-block">
+{/*// Map over videos to display each one as a clickable link to watch page*/}
+          {
+            data.map((item,key)=>{
+              return(
+                <Link to ={`/watch/${item._id}`} className="video-block">
               <div className="video_block_thumbnail">
-                <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/youtube-thumbnail-template-design-d45e855a31739ec1f58b2d0ffb7013df_screen.jpg?ts=1591603072" alt="" className="video_block_thumbnail_img" />
+                <img className="video_block_thumbnail_img" src={item?.thumbnail} />
               </div>
 
              <div className="profileBlock_details">
-                <div className="profileBlock_detailsName">Video Title</div>
-                <div className="profileBlock_detailsAbout">create at 2025-07-30</div>
+                <div className="profileBlock_detailsName">{item?.title}</div>
+                <div className="profileBlock_detailsAbout">Create at {item?.createdAt.slice(0,10)}</div>
              </div>
 
             </Link>
+              )
+            })
+          }
 
-             <Link to ={'/watch/7869'} className="video-block">
-              <div className="video_block_thumbnail">
-                <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/youtube-thumbnail-template-design-d45e855a31739ec1f58b2d0ffb7013df_screen.jpg?ts=1591603072" alt="" className="video_block_thumbnail_img" />
-              </div>
-
-             <div className="profileBlock_details">
-                <div className="profileBlock_detailsName">Video Title</div>
-                <div className="profileBlock_detailsAbout">create at 2025-07-30</div>
-             </div>
-
-            </Link>
-
-             <Link to ={'/watch/7869'} className="video-block">
-              <div className="video_block_thumbnail">
-                <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/youtube-thumbnail-template-design-d45e855a31739ec1f58b2d0ffb7013df_screen.jpg?ts=1591603072" alt="" className="video_block_thumbnail_img" />
-              </div>
-
-             <div className="profileBlock_details">
-                <div className="profileBlock_detailsName">Video Title</div>
-                <div className="profileBlock_detailsAbout">create at 2025-07-30</div>
-             </div>
-
-            </Link>
-
-            
-
-
-         
          </div>
         </div>
       </div>

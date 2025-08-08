@@ -4,10 +4,12 @@ import {Link} from'react-router-dom'
 import axios from'axios';
 import { useState } from "react";
 
+//passing sidebar as a props
 const Homepage = ({ sidebar }) => {
-
+//storing videodata in array 
 const [data, setData] = useState([]);
 
+//fetching api from backend
 useEffect(()=>{
   axios.get('http://localhost:4000/api/allvideo').then(res=>{
     console.log(res.data.videos);
@@ -17,7 +19,7 @@ useEffect(()=>{
   })
 },[])
 
-
+//categories displayed on top of homepage
   const options = [
     "All",
     "Music",
@@ -43,7 +45,7 @@ useEffect(()=>{
     "C++",
     "React",
   ];
-
+ // Wrapper div changes class based on sidebar prop for layout
   return (
     <div className={sidebar ? "homepage" : "fullhomepage"}>
       <div className={sidebar ? "homepage-option" : "fullhomepage-option"}>
@@ -53,7 +55,7 @@ useEffect(()=>{
           </div>
         ))}
       </div>
-
+  {/* //rendering video cards*/}
       <div className={sidebar ? "home_mainpage":"mainpageWithoutSidebar"}>
    
       {

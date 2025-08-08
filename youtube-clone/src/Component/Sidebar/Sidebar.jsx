@@ -12,6 +12,7 @@ import { MdOndemandVideo } from "react-icons/md";
 import { AiOutlineLike } from "react-icons/ai";
 import { MdOutlineWatchLater } from "react-icons/md";
 
+// sidebar component received 'sidebar' prop to toggle visibility
 const Sidebar = ({sidebar}) => {
   return (
     <div   className={sidebar?"home-sidebar":"homeSideNavbarHide"}>

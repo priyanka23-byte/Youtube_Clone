@@ -1,26 +1,30 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import './SignUp.css'
 import { FaYoutube } from "react-icons/fa";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 
 
+
 const SignUp = () => {
+    //state to uploaded profile image url
 const[uploadedImageUrl,setUploadedImageUrl]= useState("https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-female-user-profile-vector-illustration-isolated-background-women-profile-sign-business-concept_157943-38866.jpg?w=360")
+
+//state to signup  form field
 const [signupField , setSignupField] = useState({"channelName":"","userName":"","password":"","about":"","profilePic":uploadedImageUrl});
-
-
+//to navigate 
+const navigate = useNavigate();
+//handle typing in import field
 const handleInputField=(event,name)=>{
     setSignupField({
         ...signupField,[name]:event.target.value
     })
 }
-
 console.log(signupField);
 
+//handle image upload to cloudinary 
 const uploadImage= async(e)=>{
 const files = e.target.files;
-
 const data = new FormData();
 data.append('file',files[0]);
 data.append('upload_preset','youtube-clone');
@@ -36,6 +40,17 @@ try{
     console.log(err);
 }
 }
+//handle signup 
+const handleSignup = async()=>{
+    axios.post('http://localhost:4000/auth/signUp',signupField )
+    .then((res)=>{
+        console.log(res)
+        navigate('/');
+    }).catch(err=>{
+     console.log(err)
+    })
+}
+
 
 
   return (
@@ -60,7 +75,7 @@ try{
    </div>
 
    <div className="signup-buttons">
-    <div className="signUpbtn">SignUp</div>
+    <div className="signUpbtn" onClick={handleSignup}>SignUp</div>
     <Link  to ={'/'}className="signUpbtn">Home</Link>
 
    </div>
@@ -68,6 +83,7 @@ try{
    </div>
 
         </div>
+        
     </div>
   )
 }

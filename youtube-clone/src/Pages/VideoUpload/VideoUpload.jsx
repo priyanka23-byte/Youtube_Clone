@@ -1,23 +1,25 @@
 
-import React ,{useState}from 'react'
+import React ,{useState,useEffect}from 'react'
 import './VideoUpload.css';
 import { FaYoutube } from "react-icons/fa";
-import {Link} from'react-router-dom';
+import {Link,useNavigate} from'react-router-dom';
 import axios from 'axios';
 import { LuLoaderCircle } from "react-icons/lu";
 
 const VideoUpload = () => {
 
-const [inputField, setInputField] =useState({"title":"","description":"","videolink":"","thumbnail":"","videoType":""})
-const [loader, setLoader] =useState(false)
-
+// State to hold all input fields for video upload 
+const [inputField, setInputField] =useState({"title":"","description":"","videoLink":"","thumbnail":"","videoType":""})
+const [loader, setLoader] =useState(false);
+const navigate = useNavigate();
+//update state when input field cahnges
 const  handleOnChangeInput=(event,name)=>{
     setInputField({
       ...inputField,[name]:event.target.value
      })
    
   }
-
+//upload image or video to cloudinary
   const uploadImage= async(e,  type)=>{
     setLoader(true)
     console.log("Uploading");
@@ -31,7 +33,7 @@ try{
   const response = await axios.post(`https://api.cloudinary.com/v1_1/dg4wgozjr/${type}/upload`,data);
   const url =response.data.url;
   setLoader(false)
-  let val = type==="image"?"thumbnail":"videolink";
+  let val = type==="image"?"thumbnail":"videoLink";
   setInputField({
       ...inputField,[val]:url
      })
@@ -44,6 +46,21 @@ try{
 }
 
 console.log(inputField);
+
+useEffect(()=>{
+  let isLogin = localStorage.getItem("userId");
+  if(isLogin===null){
+   navigate('/')
+  }
+},[])
+//handle submiitthing video upload to backend
+const handleSubmitFunc = async()=>{
+  await axios.post("http://localhost:4000/api/video",inputField,{ withCredentials: true}).then((res)=>{
+    console.log(res);
+  }).catch(err=>{
+    console.log(err);
+  })
+}
 
   return (
     <div className='Video-upload'>
@@ -65,7 +82,7 @@ console.log(inputField);
                }
             </div>
             <div className="uploadBtns">
-                <div className="uploadbtn-form">Upload</div>
+                <div className="uploadbtn-form" onClick={handleSubmitFunc}>Upload</div>
                 <Link to='/' className="uploadbtn-form">Home</Link>
 
 

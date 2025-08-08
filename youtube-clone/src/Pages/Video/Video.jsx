@@ -7,15 +7,19 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const Video = () => {
+  //state for the new comment input message
   const [message, setMessage] = useState("");
+  //state to hold video fetched from api
   const [data, setData] = useState(null);
+  //state to hold video url 
   const [videoUrl, setVideoUrl] = useState("");
   const { id } = useParams();
+  //to sto all comments
   const [comments, setComments] = useState([]);
-
+// fetcbing video details by video id
   const fetchVideoById = async () => {
     await axios
-      .get(`http://localhost:4000/api/getVideoById/${id}`)
+      .get(`http://localhost:4000/api/getVideoById/${id}`,{ withCredentials: true})
       .then((response) => {
         console.log(response.data.video);
         setData(response.data.video);
@@ -25,7 +29,7 @@ const Video = () => {
         console.log(err);
       });
   };
-
+// fetching comments
   const getCommentByVideoId = async () => {
     await axios
       .get(`http://localhost:4000/commentApi/comment/${id}`)
@@ -42,6 +46,22 @@ const Video = () => {
     fetchVideoById();
     getCommentByVideoId();
   }, []);
+
+  //handle new comment
+  const handleComment = async()=>{
+    const body ={
+      "message":message,
+      "video":id
+    }
+    await axios.post('http://localhost:4000/commentApi/comment',body, {withCredentials: true}).then((resp)=>{
+      console.log(resp);
+      const newComment  = resp.data.comment;
+      setComments([newComment,...comments]);
+      setMessage("")
+    }).catch(err=>{
+      console.log(err);
+    })
+  }
 
   return (
     <div className="video">
@@ -117,7 +137,7 @@ const Video = () => {
 
               <div className="submitbtn">
                 <div className="cancelcomment">Cancel</div>
-                <div className="cancelcomment">Comment</div>
+                <div className="cancelcomment"onClick={handleComment}>Comment</div>
               </div>
             </div>
           </div>
@@ -128,16 +148,16 @@ const Video = () => {
                 <div className="selfcomment">
                   <img
                     className="selfcommentProfile"
-                    src={item?.user?.profilePic}
+                    src="http://res.cloudinary.com/dg4wgozjr/image/upload/v1754570472/zl5mixhsc…"
                     
                   />
                   <div className="othersComment-sec">
                     <div className="othersComment-secHeader">
-                      <div className="channelName">{item?.user?.channelName}</div>
-                      <div className="channelTiming">{item?.createdAt.splice(0,10)}</div>
+                      <div className="channelName">Cody</div>
+                      <div className="channelTiming">2025-07-</div>
                     </div>
                     <div className="otherscommentsection">
-                      {item?.message}
+                      This is a Nice video.
                     </div>
                   </div>
                 </div>

@@ -17,13 +17,7 @@ function App (){
 
 const [sidebar, setSidebar]= useState(true);
 
-// useEffect(()=>{
-//   axios.get('http://localhost:4000/api/allvideo').then(res=>{
-//     console.log(res);
-//   }).catch(err=>{
-//     console.log(err);
-//   })
-// },[])
+
 
 const sideNavbar=(value)=>{
   setSidebar(value)
