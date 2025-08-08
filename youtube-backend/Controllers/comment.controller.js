@@ -1,7 +1,7 @@
 
 import Comment from '../Modals/comment.modal.js'; 
 
-
+//to add new comment
 export const addComment = async(req,res)=>{
 
   try{
@@ -20,13 +20,15 @@ export const addComment = async(req,res)=>{
   }
 }
 
-
+//to get all comments for a specific vieo by id
 export const getCommentByVideoId = async(req,res)=>{
 
     try{
         let {videoId} = req.params;
+        // find comments that video field matches video-id
+    // Populate user info: channelName, profilePic, userName, createdAt
         const comments = await Comment.find({video:videoId}).populate('user','channelName profilePic userName createdAt');
-
+//respond with status
         res.status(201).json({
     message:"Success",
     comments
